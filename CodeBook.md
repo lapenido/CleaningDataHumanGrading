@@ -1,5 +1,5 @@
-# Feature Selection 
-# =================
+### Feature Selection 
+### =================
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals time Accelerometer-XYZ and tGyro-XYZ. 
 These time domain signals were captured at a constant rate of 50 Hz. 
@@ -20,7 +20,7 @@ Note the 'Frequency' to indicate frequency domain signals.
 These signals were used to estimate variables of the feature vector for each pattern:  
 '-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
 
-<b> Note suffix Mean: Mean valueand  Std: Standard deviation </b>
+<b> Note suffix Mean: Mean value and  Std: Standard deviation </b>
 
 <ol>                                     
 <li>DataTidy$Activities                  </li>
