@@ -16,10 +16,10 @@ from the Samsung Galaxy S smartphone
 
 The Run_analisys.R script will create a database with the averages of some variables found in the original files
 , so this will the following steps:
-<ol>
-	<li> Set work dir to "./UCI HAR Dataset" </li>
-	<li> 1. Merges the training and the test sets to create one data set.
+<ol>	
+	<li>Merges the training and the test sets to create one data set.
 	<ol> 
+		<li> Set work dir to "./UCI HAR Dataset" </li>
 		<li>Read data files "./train/X_train.txt" and "./test/X_test.txt"</li>
 		<li>Append Train+Test data frame</li>
 	</ol>
@@ -32,7 +32,7 @@ The Run_analisys.R script will create a database with the averages of some varia
 		<li>Append Subject Train+Test data frame</li>
 	</ol>
   
-	<li> 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+	<li>Extracts only the measurements on the mean and standard deviation for each measurement.
 	<ol>
 		<li> Read features file "./features.txt"</li> 
 		<li> Find only measurements on the mean and standard deviation lines
@@ -41,55 +41,29 @@ The Run_analisys.R script will create a database with the averages of some varia
 		</li>
 	</ol>
 	</li>
-	<li> 3. Uses descriptive activity names to name the activities in the data set </li>
+	<li>Uses descriptive activity names to name the activities in the data set </li>
 	<ol>
 		<li> Read file "./activity_labels.txt" </li>
 		<li> Apply labels to variables   </li>
 	</ol>
-    <li>  4. Appropriately labels the data set with descriptive variable names. </li>
+    <li> Appropriately labels the data set with descriptive variable names. </li>
 	<ol>
 		<li>Names of variables have    : t --> Time ;  Acc --> Accelerometer ; Gyro --> Gyroscope , f --> Frequency</li>
-		<li>EX:</li>
-		<li>tBodyAcc-mean()-X  --> TimeBodyAccelerometerMeanX </li>
-		<li>fBodyAcc-std()-Y   --> FrequencyBodyAccelerometerStdY</li>
+		<li><b>EX:</b>
+			tBodyAcc-mean()-X  --> TimeBodyAccelerometerMeanX 
+			fBodyAcc-std()-Y   --> FrequencyBodyAccelerometerStdY
+		</li>
+		<li> Names of variables not have: "-" ; " " ; "." ;"()" </li>
 	</ol>
 	
-  Features[,2] <- sub("tBody","TimeBody",Features[,2])
-  Features[,2] <- sub("tGravity","TimeGravity",Features[,2])
-  Features[,2] <- sub("fBody","FrequencyBody",Features[,2])
-  Features[,2] <- sub("Acc","Accelerometer",Features[,2])
-  Features[,2] <- sub("Gyro","Gyroscope",Features[,2])
-  Features[,2] <- sub("mean","Mean",Features[,2])
-  Features[,2] <- sub("std","Std",Features[,2])
-
-# Names of variables not have: "-" ; " " ; "." ;"()"
-
-  Features[,2] <- sub(" ","",Features[,2])
-  Features[,2] <- sub("\\(","",Features[,2])
-  Features[,2] <- sub("\\)","",Features[,2])
-  Features[,2] <- gsub("\\-","",Features[,2])
-
-# Apply names (Features) for all colums for DataX
-  names(DataX) <- Features[,2]  
-
-# Create Tidy Data 
-  
-  DataTidy <- cbind(Subject,DataY,DataX)
-  
-## 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject
-## use library (plyr)
-## Split for activity and  subject   
- library (plyr)
- 
- IndependentDataTidy <- ddply(DataTidy[,3:68] , .(DataTidy$Activities,DataTidy$Subject), colMeans)
-
- 
-## Save file in work dir with sep = ","
-
- write.table(IndependentDataTidy, "IndependentDataTidy.txt", sep="," ,row.name=FALSE)
-  
- 
-# END 
+	<li><b>Create Tidy Data with merge Subject , Y and X data frame</b> </li>
+	
+	<li> From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject</li>
+		<ol>
+			<li> Use library <b>(plyr)</b> for use <b>ddply</b> function to apply mean to every colum</li>
+			<li>Save file in work dir with sep = ","</li>
+			<li> <b> #3END </b> </li> 
+		</ol>
 </ol> 
 
 
