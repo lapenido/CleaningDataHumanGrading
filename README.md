@@ -30,39 +30,30 @@ The Run_analisys.R script will create a database with the averages of some varia
 	<ol>
 		<li>Read Subject files "./train/subject_train.txt" and "./test/subject_test.txt"</li>  
 		<li>Append Subject Train+Test data frame</li>
-</ol>
+	</ol>
   
-## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
-
-# Read features file
-  Features <- read.table("./features.txt")  
-
-# Find only measurements on the mean and standard deviation lines
-# find "-mean()" or "-std()" string and select lines.  
-  IndexFeaturesMeanStandardDeviation <- grep("-mean\\(\\)|-std\\(\\)", Features[,2])
-
-# Get only measurements on the mean and standard deviation colums  
-  DataX     <- DataX     [ ,IndexFeaturesMeanStandardDeviation] 
-
-# Get only measurements labels on the mean and standard deviation lines  
-  Features  <- Features  [IndexFeaturesMeanStandardDeviation, ] 
-
-
-## 3. Uses descriptive activity names to name the activities in the data set
-# Read activity_labels file 
-  ActivitiesLabels <- read.table("./activity_labels.txt")
-  
-# apply labels to variables   
-  DataY[, 1] = ActivitiesLabels[DataY[, 1], 2]
-  names(DataY) <- "Activities"
-  
-
-## 4. Appropriately labels the data set with descriptive variable names. 
-# Names of variables have    : t --> Time ;  Acc --> Accelerometer ; Gyro --> Gyroscope , f --> Frequency
-# EX:
-# tBodyAcc-mean()-X  --> TimeBodyAccelerometerMeanX 
-# fBodyAcc-std()-Y   --> FrequencyBodyAccelerometerStdY
- 
+	<li> 2. Extracts only the measurements on the mean and standard deviation for each measurement.
+	<ol>
+		<li> Read features file "./features.txt"</li> 
+		<li> Find only measurements on the mean and standard deviation lines
+		      find "-mean()" or "-std()" string and select lines.  
+              for this use function grep()
+		</li>
+	</ol>
+	</li>
+	<li> 3. Uses descriptive activity names to name the activities in the data set </li>
+	<ol>
+		<li> Read file "./activity_labels.txt" </li>
+		<li> Apply labels to variables   </li>
+	</ol>
+    <li>  4. Appropriately labels the data set with descriptive variable names. </li>
+	<ol>
+		<li>Names of variables have    : t --> Time ;  Acc --> Accelerometer ; Gyro --> Gyroscope , f --> Frequency</li>
+		<li>EX:</li>
+		<li>tBodyAcc-mean()-X  --> TimeBodyAccelerometerMeanX </li>
+		<li>fBodyAcc-std()-Y   --> FrequencyBodyAccelerometerStdY</li>
+	</ol>
+	
   Features[,2] <- sub("tBody","TimeBody",Features[,2])
   Features[,2] <- sub("tGravity","TimeGravity",Features[,2])
   Features[,2] <- sub("fBody","FrequencyBody",Features[,2])
