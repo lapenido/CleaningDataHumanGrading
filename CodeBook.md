@@ -1,5 +1,4 @@
 ### Feature Selection 
-### =================
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals time Accelerometer-XYZ and tGyro-XYZ. 
 These time domain signals were captured at a constant rate of 50 Hz. 
